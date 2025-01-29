@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @enterprise %>
+
+<div>
+  <%= link_to "Edit this enterprise", edit_enterprise_path(@enterprise) %> |
+  <%= link_to "Back to enterprises", enterprises_path %>
+
+  <%= button_to "Destroy this enterprise", @enterprise, method: :delete %>
+</div>

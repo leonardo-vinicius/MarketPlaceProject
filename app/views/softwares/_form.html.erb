@@ -1,0 +1,47 @@
+<%= form_with(model: software) do |form| %>
+  <% if software.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(software.errors.count, "error") %> prohibited this software from being saved:</h2>
+
+      <ul>
+        <% software.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.textarea :description %>
+  </div>
+
+  <div>
+    <%= form.label :status, style: "display: block" %>
+    <%= form.number_field :status %>
+  </div>
+
+  <div>
+    <%= form.label :price, style: "display: block" %>
+    <%= form.text_field :price %>
+  </div>
+
+  <div>
+    <%= form.label :category, style: "display: block" %>
+    <%= form.text_field :category %>
+  </div>
+
+  <div>
+    <%= form.label :seller_id, style: "display: block" %>
+    <%= form.text_field :seller_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
