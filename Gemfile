@@ -75,3 +75,7 @@ end
 
 gem "devise", "~> 4.9"
 gem "devise-i18n", "~> 1.12"
+
+#gem "dockerfile-rails", ">= 1.7", :group => :development
+
+#gem "aws-sdk-s3", "~> 1.179", :require => false
