@@ -14,9 +14,7 @@ class User < ApplicationRecord
   has_many :payments, dependent: :destroy
   has_many :purchased_softwares, through: :payments, source: :software
 
-  PASSWORD_FORMAT_ERROR_MESSAGE = 'password is invalid, it must contain at least one number'.freeze
-
-  validates :password, format: { with:/\A*\d/i, message: PASSWORD_FORMAT_ERROR_MESSAGE }
+  validates :password, format: { with: /\A(?=.*\d)(?=.*[a-zA-Z]).{6,}\z/, message: "must include at least one letter and one digit and be at least 6 characters long" }
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
   validates :phone, format: { with: /\A\d{10,}\z/, message: "deve ter pelo menos 10 dígitos" }, allow_nil: true
