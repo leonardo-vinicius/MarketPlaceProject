@@ -1,22 +1,13 @@
-# fly.toml app configuration file generated for marketplace-project on 2025-01-29T17:50:55-03:00
+# fly.toml app configuration file generated for marketplace-project on 2025-01-29T18:44:12-03:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
 app = 'marketplace-project'
 primary_region = 'gig'
-console_command = '/rails/bin/rails console'
+console_command = "bundle exec puma -C config/puma.rb"
 
 [build]
-
-[deploy]
-  release_command = './bin/rails db:prepare'
-
-[env]
-  PORT = '8080'
-
-[processes]
-  app = './bin/rails server'
 
 [http_service]
   internal_port = 8080
