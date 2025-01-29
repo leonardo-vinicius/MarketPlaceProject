@@ -70,3 +70,12 @@ ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 # Start server via Thruster by default, this can be overwritten at runtime
 EXPOSE 80
 CMD ["./bin/thrust", "./bin/rails", "server"]
+
+FROM ruby:3.3.5-slim
+
+# Instala dependências básicas e Node.js
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y curl libjemalloc2 libvips postgresql-client nodejs && \
+    rm -rf /var/lib/apt/lists /var/cache/apt/archives
+
+# Outras instruções do Dockerfile seguem...
