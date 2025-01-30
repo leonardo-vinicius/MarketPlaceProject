@@ -35,4 +35,4 @@ console_command = "bundle exec puma -C config/puma.rb"
   cpus = 1
 
 [env]
-  PORT = "80"
+  PORT = "3000"
