@@ -10,7 +10,7 @@ console_command = "bundle exec puma -C config/puma.rb"
 [build]
 
 [http_service]
-  internal_port = 8080
+  internal_port = 3000
   force_https = true
   auto_stop_machines = 'stop'
   auto_start_machines = true
@@ -33,3 +33,6 @@ console_command = "bundle exec puma -C config/puma.rb"
   memory = '1gb'
   cpu_kind = 'shared'
   cpus = 1
+
+[env]
+  PORT = "80"
