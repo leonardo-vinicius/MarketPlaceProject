@@ -16,7 +16,9 @@ WORKDIR /rails
 
 
 # Install dependencies
-RUN apt-get update -qq && apt-get install -y nodejs
+RUN rm -rf /var/lib/apt/lists/* && apt-get update -qq && \
+    apt-get install --no-install-recommends -y curl libjemalloc2 libvips postgresql-client nodejs && \
+    rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Install base packages
 RUN apt-get update -qq && \
