@@ -17,7 +17,7 @@ class User < ApplicationRecord
   validates :password, format: { with: /\A(?=.*\d)(?=.*[a-zA-Z]).{6,}\z/, message: "must include at least one letter and one digit and be at least 6 characters long" }
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
-  validates :phone, format: { with: /\A\d{10,}\z/, message: "deve ter pelo menos 10 dígitos" }, allow_nil: true
+  validates :phone, format: { with: /\A\d{10,}\z/, message: "deve ter pelo menos 10 dígitos!" }, allow_nil: true
 
   def can_comment?(software)
     return false unless buyer?
