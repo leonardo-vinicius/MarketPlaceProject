@@ -1,0 +1,88 @@
+<div class="progress mb-4" style="height: 30px;">
+  <div class="progress-bar" role="progressbar" style="width: 66%;" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100">Etapa 2 de 3</div>
+</div>
+
+<h1 class="mb-4 text-center">Orçamento da empresa</h1>
+
+<%= form_with url: onboarding_step3_path, method: :post, local: true, class: "needs-validation", novalidate: true do |f| %>
+  <style>
+    .option-card-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .option-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      max-width: 200px;
+      margin: 10px;
+    }
+    .option-card:hover {
+      background-color: #e6f2ff;
+      transform: scale(1.05);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .option-card.selected {
+      border: 2px solid #007bff;
+      background-color: #e6f2ff;
+    }
+    .option-card-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 20px;
+    }
+    .navigation-container {
+      max-width: 800px;
+      margin: 20px auto 0;
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+
+  <div class="container option-card-container">
+    <div class="row justify-content-center">
+      <% [
+        { icon: 'fa-user', name: 'Até R$1000'},
+        { icon: 'fa-users', name: 'Mais que R$1000' },
+        { icon: 'fa-building', name: 'Livre' }
+      ].each do |option| %>
+        <div class="col">
+          <label class="card h-100 option-card">
+            <div class="card-body text-center option-card-content">
+              <i class="fas <%= option[:icon] %> fa-3x mb-3 text-primary"></i>
+              <h5 class="card-title"><%= option[:name] %></h5>
+              <%= f.radio_button :answer2, option[:name], class: "d-none", onchange: "handleOptionSelect(this)" %>
+            </div>
+          </label>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <script>
+    function handleOptionSelect(radio) {
+      document.querySelectorAll('.option-card').forEach(card => {
+        card.classList.remove('selected');
+      });
+      
+      if (radio.checked) {
+        radio.closest('.option-card').classList.add('selected');
+      }
+    }
+  </script>
+
+  <div class="navigation-container">
+    <%= link_to "Voltar", onboarding_step1_path, class: "btn btn-secondary btn-lg" %>
+    <%= f.submit "Próximo", class: "btn btn-primary btn-lg", disabled: true, id: "next-button" %>
+  </div>
+<% end %>
+
+<script>
+  document.querySelectorAll('input[name="answer2"]').forEach(radio => {
+    radio.addEventListener('change', function() {
+      document.getElementById('next-button').disabled = !this.checked;
+    });
+  });
+</script>
